@@ -12,7 +12,7 @@ const dm_sans = DM_Sans({
   variable: '--font-jampack'
 })
 
-// metadata
+// metadata 
 export const metadata = {
   title: "MIA | L'avatar del tuo ecommerce avatar per l'ecommerce",
   description: 'NextJs based admin dashboard template by hencework',
