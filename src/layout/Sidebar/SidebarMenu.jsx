@@ -150,30 +150,6 @@ export const SidebarMenu = [
                     },
                 ]
             },
-            {
-                id: "dash_profile",
-                name: 'Profile',
-                icon: <Icons.UserSearch />,
-                path: '/profile/',
-                badgeIndicator: <HkBadge bg="danger" indicator className="position-absolute top-0 start-100" />,
-                childrens: [
-                    {
-                        name: 'Profile',
-                        path: '/profile',
-                        grp_name: "apps",
-                    },
-                    {
-                        name: 'Edit Profile',
-                        path: '/profile/edit-profile',
-                        grp_name: "apps",
-                    },
-                    {
-                        name: 'Account',    
-                        path: '/profile/account',
-                        grp_name: "apps",
-                    },
-                ]
-            },
 
         ]
     },

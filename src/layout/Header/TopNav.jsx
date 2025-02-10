@@ -355,47 +355,7 @@ const TopNav = () => {
                                                 </div>
                                             </div>
                                             <div className="media-body">
-                                                <Dropdown>
-                                                    <Dropdown.Toggle as="a" href="#" className="d-block fw-medium text-dark">Hencework</Dropdown.Toggle>
-                                                    <Dropdown.Menu align="end">
-                                                        <div className="p-2">
-                                                            <div className="media align-items-center active-user mb-3">
-                                                                <div className="media-head me-2">
-                                                                    <div className="avatar avatar-primary avatar-xs avatar-rounded">
-                                                                        <span className="initial-wrap">Hk</span>
-                                                                    </div>
-                                                                </div>
-                                                                <div className="media-body">
-                                                                    <Link href="#" className="d-flex link-dark">Hencework <i className="ri-checkbox-circle-fill fs-7 text-primary ms-1" />
-                                                                    </Link>
-                                                                    <Link href="#" className="d-block fs-8 link-secondary">
-                                                                        <u>Manage your account</u>
-                                                                    </Link>
-                                                                </div>
-                                                            </div>
-                                                            <div className="media align-items-center mb-3">
-                                                                <div className="media-head me-2">
-                                                                    <div className="avatar avatar-xs avatar-rounded">
-                                                                        <Image src={avatar12} alt="user" className="avatar-img" />
-                                                                    </div>
-                                                                </div>
-                                                                <div className="media-body">
-                                                                    <Link href="#" className="d-block link-dark">Jampack Team</Link>
-                                                                    <Link href="#" className="d-block fs-8 link-secondary">contact@hencework.com</Link>
-                                                                </div>
-                                                            </div>
-                                                            <Button variant="outline-light" size="sm" className="btn-block">
-                                                                <span>
-                                                                    <span className="icon">
-                                                                        <span className="feather-icon">
-                                                                            <Plus />
-                                                                        </span>
-                                                                    </span>
-                                                                    <span>Add Account</span></span>
-                                                            </Button>
-                                                        </div>
-                                                    </Dropdown.Menu>
-                                                </Dropdown>
+                                                <div className="d-block fw-medium text-dark">Hencework</div>
                                                 <div className="fs-7">contact@hencework.com</div>
                                                 <Link href="#" className="d-block fs-8 link-secondary">
                                                     <u>Sign Out</u>
@@ -405,11 +365,7 @@ const TopNav = () => {
                                     </div>
                                     <Dropdown.Divider as="div" />
                                     <Dropdown.Item as={Link} href="/profile" >Profile</Dropdown.Item>
-                                    <Dropdown.Item>
-                                        <span className="me-2">Offers</span>
-                                        <span className="badge badge-sm badge-soft-pink">2</span>
-                                    </Dropdown.Item>
-                                    <Dropdown.Divider as="div" />
+                                    {/* <Dropdown.Divider as="div" />
                                     <h6 className="dropdown-header">Manage Account</h6>
                                     <Dropdown.Item>
                                         <span className="dropdown-icon feather-icon">
@@ -436,7 +392,7 @@ const TopNav = () => {
                                         </span>
                                         <span>Raise a ticket</span>
                                     </Dropdown.Item>
-                                    <Dropdown.Divider as="div" />
+                                    <Dropdown.Divider as="div" /> */}
                                     <Dropdown.Item>
                                         Terms &amp; Conditions
                                     </Dropdown.Item>
