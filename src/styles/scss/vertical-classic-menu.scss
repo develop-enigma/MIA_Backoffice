@@ -109,8 +109,8 @@ Project:	Jampack
 					>.nav-item {
 						&.active {
 							>.nav-link {
-								@include background-opacity($primary, 0.15);
-								color: $primary !important;
+								@include background-opacity($primary, 0.85);
+								color: $primary-text !important;
 								border-radius: 0.5rem;
 							}
 						}

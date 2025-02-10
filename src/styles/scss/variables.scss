@@ -12,7 +12,7 @@ $indigo:#322BF3;
 $blue:#298DFF;
 $sky:#00B0FF;
 $cyan:#18DDEF;
-$teal:#007D88;
+$teal: black;
 $neon:#81E230;
 $lime:#C2E939;
 $sun:#FFEA00;
@@ -278,6 +278,7 @@ $black_5:mix(black, $black, 50%);
 
 // Theme color variables
 $primary : $teal;
+$primary-text : white;
 $info : $cyan;
 $success : $green;
 $danger : $red;
