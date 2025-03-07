@@ -115,7 +115,7 @@ const Login = () => {
                                     </Row>
                                 </Container>
                             </div>
-                        </Col>
+                        </Col> 
                         
                         <Col xl={6} lg={6} md={5} sm={10} className="d-md-block d-none position-relative" style={{ backgroundColor: '#f5dde7' }}>
                             <div className="auth-content flex-column text-center py-8">
