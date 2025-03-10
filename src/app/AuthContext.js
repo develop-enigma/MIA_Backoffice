@@ -89,7 +89,7 @@ export const AuthProvider = ({ children }) => {
             return;
         }
     
-        const userData = JSON.parse(storedUser);
+        const userData = JSON.parse(storedUser); 
         const { username, password } = userData;
     
         try {
