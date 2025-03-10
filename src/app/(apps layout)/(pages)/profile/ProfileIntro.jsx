@@ -2,11 +2,16 @@ import Image from 'next/image';
 import { Card } from 'react-bootstrap';
 import HkBadge from '@/components/@hk-badge/@hk-badge';
 import HkTooltip from '@/components/@hk-tooltip/HkTooltip';
+import { useAuth } from '@/app/AuthContext';
 
 //Image 
 import avatar3 from '@/assets/img/avatar3.jpg';
 
+
 const ProfileIntro = () => {
+    
+    const { user } = useAuth();
+    
     return (
         <div className="profile-intro">
             <Card className="card-flush mw-400p bg-transparent">
@@ -21,7 +26,7 @@ const ProfileIntro = () => {
                         </HkTooltip>
                     </h4>
                     <p>
-                        Venenatis tellus in metus vulputate
+                        {user?.company?.email || "Email non disponibile"}
                     </p>
                     <ul className="list-inline fs-7 mt-2 mb-0">
                         <li className="list-inline-item d-sm-inline-block d-block mb-sm-0 mb-1 me-3">
@@ -29,10 +34,9 @@ const ProfileIntro = () => {
                             <a href="#">Co-Founder,</a>
                             <a href="#">Jampack</a>
                         </li>
-                        <li className="list-inline-item d-sm-inline-block d-block mb-sm-0 mb-1 me-3">
+                        <li className="list-inline-item d-sm-inline-block d-block mb-sm-0 mb-1 me-3 mt-2">
                             <i className="bi bi-geo-alt me-1" />
-                            <a href="#">San Francisco,</a>
-                            <a href="#">US</a>
+                            <span>{user?.company?.municipality}, {user?.company?.province}, {user?.company?.state}</span>
                         </li>
                     </ul>
                 </Card.Body>

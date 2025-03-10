@@ -1,7 +1,8 @@
-﻿'use client'
+﻿"use client"; // Aggiungi questa direttiva
 
 import { createContext, useContext, useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { loginUser, getUserData } from './api/api';
 
 const AuthContext = createContext();
 
@@ -10,25 +11,24 @@ export const useAuth = () => useContext(AuthContext);
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const router = useRouter();
-
+    
     useEffect(() => {
+
         const storedUser = localStorage.getItem('user');
         const tokenExpiration = localStorage.getItem('token_expiration');
-
-        if (storedUser && tokenExpiration) {
-            const expirationDate = new Date(tokenExpiration);
-            const currentTime = new Date();
-
-            if (currentTime > expirationDate) {
-                localStorage.removeItem('user');
-                localStorage.removeItem('auth_token');
-                localStorage.removeItem('token_expiration');
-                router.push('/auth/login');
-            } else {
-                setUser(JSON.parse(storedUser));
-            }
-        } else {
+        
+        if ((!storedUser || !tokenExpiration) && !window.location.pathname.includes('/auth')) {
             router.push('/auth/login');
+            return;
+        }
+
+        const expirationDate = new Date(tokenExpiration);
+        const currentTime = new Date();
+
+        if (currentTime >= expirationDate && !window.location.pathname.includes('/auth')) {
+            refreshAuthToken();
+        } else {
+            setUser(JSON.parse(storedUser));
         }
     }, []);
 
@@ -41,18 +41,34 @@ export const AuthProvider = ({ children }) => {
         const expirationDate = new Date(expiration);
         const currentTime = new Date();
 
-        if (currentTime > expirationDate) {
-            localStorage.removeItem('auth_token');
-            localStorage.removeItem('token_expiration');
+        if (currentTime >= expirationDate) {
+            logout();
             return null;
         }
 
         return token;
     };
 
-    const login = (userData, expiration) => {
+    const login = async (username, password) => {
+        const { token, expiration, error } = await loginUser(username, password);
+
+        if (error) {
+            console.error('Errore login:', error);
+            return;
+        }
+
+        localStorage.setItem('auth_token', token);
+        localStorage.setItem('token_expiration', expiration);
+
+        const userData = await getUserData(token);
+
+        if (userData.error) {
+            console.error('Errore recupero dati utente:', userData.error);
+            logout();
+            return;
+        }
+
         localStorage.setItem('user', JSON.stringify(userData));
-        localStorage.setItem('token_expiration', expiration.toISOString());
         setUser(userData);
         router.push('/');
     };
@@ -62,7 +78,46 @@ export const AuthProvider = ({ children }) => {
         localStorage.removeItem('auth_token');
         localStorage.removeItem('token_expiration');
         setUser(null);
-        router.push('/auth/login');
+        window.location.reload();
+    };
+
+    const refreshAuthToken = async () => {
+        const storedUser = localStorage.getItem('user');
+        
+        if (!storedUser) {
+            logout();
+            return;
+        }
+    
+        const userData = JSON.parse(storedUser);
+        const { username, password } = userData;
+    
+        try {
+            const { token, expiration, error } = await loginUser(username, password);
+            
+            if (error) {
+                logout();
+                return;
+            }
+    
+            const expirationUTC = new Date(expiration).toISOString();
+            localStorage.setItem('auth_token', token);
+            localStorage.setItem('token_expiration', expirationUTC);
+    
+            const userData = await getUserData(token);
+            if (userData.error) {
+                logout();
+                return;
+            }
+    
+            localStorage.setItem('user', JSON.stringify(userData));
+    
+            setUser(userData);
+    
+        } catch (error) {
+            console.error('Errore durante il refresh del token', error);
+            logout();
+        }
     };
 
     return (

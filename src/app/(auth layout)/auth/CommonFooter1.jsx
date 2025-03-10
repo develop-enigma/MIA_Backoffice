@@ -5,13 +5,13 @@ const CommonFooter1 = () => {
         <div className="hk-footer border-0">
             <Container as="footer" className="footer">
                 <Row>
-                    <Col xl={8} className="text-center">
+                    <div className="col-xl-8 text-center">
                         <p className="footer-text pb-0">
-                            <span className="copy-text">Jampack © {new Date().getFullYear()} All rights reserved.</span>
-                            <a href="#">Privacy Policy</a>
-                            <span className="footer-link-sep">|</span><a href="#">T&amp;C</a><span className="footer-link-sep">|</span><a href="#">System Status</a>
+                            <span className="copy-text"><a href={"https://www.enigma-tech.it/"}>Enigma Tech SRL</a> © {new Date().getFullYear()} Tutti i diritti riservati.</span>
+                            <a href="#some" target="_blank">Privacy Policy</a><span className="footer-link-sep">|</span>
+                            <a href="#some" target="_blank">Termni&amp;Condizioni</a><span className="footer-link-sep"></span>
                         </p>
-                    </Col>
+                    </div>
                 </Row>
             </Container>
         </div>

@@ -5,7 +5,7 @@ import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap';
 import CommonFooter1 from '../CommonFooter1';
 
 //image
-import logo from '@/assets/img/logo-light.png';
+import logo from '@/assets/mia-img/89dc2cab-e4c2-4769-a878-99a94dbc896f_1.png';
 
 const ResetPassword = () => {
     return (
@@ -19,8 +19,8 @@ const ResetPassword = () => {
                                     <Row>
                                         <Col lg={5} md={7} sm={10} className="mx-auto">
                                             <div className="text-center mb-7">
-                                                <Link href="/" className="navbar-brand me-0">
-                                                    <Image className="brand-img d-inline-block" src={logo} alt="brand" />
+                                                <Link href="/auth/login" className="navbar-brand me-0">
+                                                    <Image className="brand-img d-inline-block" src={logo} alt="brand" style={{ width: '100px', height: 'auto', }} />
                                                 </Link>
                                             </div>
                                             <Card className="card-flush">

@@ -9,60 +9,26 @@ export const SidebarMenu = [
                 name: 'Dashboard',
                 icon: <Icons.Template />,
                 path: '/dashboard',
-                badge: <HkBadge size="sm" bg="pink" soft className="ms-auto" >hot</HkBadge>
+                //badge: <HkBadge size="sm" bg="pink" soft className="ms-auto" >dati</HkBadge>
             },
         ]
     },
     {
-        group: 'Apps',
+        group: 'Strumenti',
         contents: [
             {
                 id: 'dash_chat',
                 name: 'Chat',
                 icon: <Icons.MessageDots />,
-                path: '/apps/chat/',
-                childrens: [
-                    {
-                        name: 'Chats',
-                        path: '/apps/chat/chats',
-                        grp_name: "apps",
-                    },
-                    {
-                        name: 'Groups',
-                        path: '/apps/chat/groups',
-                        grp_name: "apps",
-                    },
-                    {
-                        name: 'Contacts',
-                        path: '/apps/chat/contact',
-                        grp_name: "apps",
-                    },
-                ]
+                path: '/apps/chat/chats',
             },
             {
                 id: "dash_contact",
                 name: 'Contact',
-                icon: <Icons.Notebook />,
-                path: '/apps/contact/',
-                childrens: [
-                    {
-                        name: 'Contact List',
-                        path: '/apps/contact/contact-list',
-                        grp_name: "apps",
-                    },
-                    {
-                        name: 'Contact Cards',
-                        path: '/apps/contact/contact-cards',
-                        grp_name: "apps",
-                    },
-                    {
-                        name: 'Edit Contact',
-                        path: '/apps/contact/edit-contact',
-                        grp_name: "apps",
-                    },
-                ]
+                icon: <Icons.Hanger />,
+                path: '/apps/contact/contact-list',
             },
-            {
+            /* {
                 id: "dash_task",
                 name: 'Todo',
                 icon: <Icons.ListDetails />,
@@ -80,11 +46,41 @@ export const SidebarMenu = [
                         grp_name: "apps",
                     },
                 ]
+            }, */
+        ]
+    },
+    {
+        group: 'Impostazioni',
+        contents: [
+            {
+                id: 'dash_chat',
+                name: 'Setting',
+                icon: <Icons.Settings />,
+                path: '/apps/todo/task-list',
             },
+            /* {
+                id: "dash_task",
+                name: 'Todo',
+                icon: <Icons.ListDetails />,
+                path: '/apps/todo/',
+                badge: <HkBadge bg="success" soft className="ms-2">2</HkBadge>,
+                childrens: [
+                    {
+                        name: 'Tasklist',
+                        path: '/apps/todo/task-list',
+                        grp_name: "apps",
+                    },
+                    {
+                        name: 'Gantt',
+                        path: '/apps/todo/gantt',
+                        grp_name: "apps",
+                    },
+                ]
+            }, */
         ]
     },
 
-    //Pages group
+    /* //Pages group
     {
         group: 'Pages',
         contents: [
@@ -152,6 +148,6 @@ export const SidebarMenu = [
             },
 
         ]
-    },
+    }, */
 
 ]

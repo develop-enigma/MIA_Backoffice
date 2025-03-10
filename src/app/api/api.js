@@ -1,35 +1,49 @@
-﻿
-//const API_BASE_URL = 'https://test-back.virtualmia.it/api/v1';
-const API_BASE_URL = 'https://localhost:44346/api/v1';
+﻿const API_BASE_URL = 'https://localhost:44346/api/v1';
 
 const API_ENDPOINTS = {
     AUTH_LOGIN: `${API_BASE_URL}/auth/one_time_token`,
-    USER_DATA: `${API_BASE_URL}/user/data`,
+    USER_DATA: `${API_BASE_URL}/company/info`,
 };
 
 export const loginUser = async (username, password) => {
     try {
-        debugger;
         const res = await fetch(`${API_ENDPOINTS.AUTH_LOGIN}?username=${username}&password=${password}`, {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' },
         });
 
-        if (!res.ok) {
-            throw new Error('Credenziali errate');
-        }
+        if (!res.ok) throw new Error('Credenziali errate');
 
         const data = await res.json();
         const result = data.data;
-        
-        if (result.token) {
-            const expiration = new Date(result.expiration);
-            localStorage.setItem('auth_token', result.token);
-            localStorage.setItem('token_expiration', expiration.toISOString());
-            return { token: result.token, expiration: expiration };
+
+        if (result.token && result.expiration) {
+            const expirationUTC = new Date(result.expiration).toISOString();
+            return { token: result.token, expiration: expirationUTC };
         } else {
             throw new Error('Token non ricevuto');
         }
+    } catch (error) {
+        return { error: error.message };
+    }
+};
+
+export const getUserData = async (token) => {
+    try {
+        const userInfoRes = await fetch(API_ENDPOINTS.USER_DATA, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            },
+        });
+
+        if (!userInfoRes.ok) {
+            throw new Error('Impossibile recuperare le informazioni dell\'utente');
+        }
+
+        const userInfo = await userInfoRes.json();
+        return userInfo.data;
     } catch (error) {
         return { error: error.message };
     }
