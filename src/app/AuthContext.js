@@ -104,7 +104,7 @@ export const AuthProvider = ({ children }) => {
         localStorage.removeItem('token_expiration');
         localStorage.removeItem('username');
         localStorage.removeItem('password');
-        setUser(null);
+        setUser(null); 
     };
     const refreshAuthToken = async () => {
         const username = localStorage.getItem('username');
