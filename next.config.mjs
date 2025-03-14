@@ -1,18 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    async redirects() {
-        return [
-            {
-                source: '/',
-                destination: '/dashboard',
-                permanent: true, // Set to false if the redirect is temporary
-            },
-        ];
-    },
     sassOptions: {
-        quietDeps: true, // Suppresses warnings from dependencies
+        quietDeps: true,
         api: 'modern-compiler',
-
     },
 };
 

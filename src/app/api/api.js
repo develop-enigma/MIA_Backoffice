@@ -17,10 +17,16 @@ export const loginUser = async (username, password) => {
         const data = await res.json();
         const result = data.data;
 
+        const moment = require('moment-timezone');
+
         if (result.token && result.expiration) {
-            const expirationUTC = new Date(result.expiration).toISOString();
-            return { token: result.token, expiration: expirationUTC };
-        } else {
+
+            const expirationUTC = moment.utc(result.expiration, "DD-MM-YYYY HH:mm");
+
+            const expirationFixed = expirationUTC.tz('Europe/Rome').format("YYYY-MM-DDTHH:mm:ss.SSSZ");
+
+            return { token: result.token, expiration: expirationFixed };
+        }else {
             throw new Error('Token non ricevuto');
         }
     } catch (error) {
